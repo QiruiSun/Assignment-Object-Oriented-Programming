@@ -9,38 +9,46 @@ class Rover
 
   def read_instructions
     puts "Input your insturctions here."
-    @instructions = gets.each_char do |d|
+    @instructions = gets.chomp.each_char do |d| # forgot putting chomp gives a lot of trouble!
       if d == "M"
-        move(d)
+        move
       else
         turn(d)
       end
     end
   end
 
-  def turn(n)
+  def turn(n)  #rotate method
 
-    @turn_list = ["N", "W" "S", "E"]
-    @x = turn_list[@direction]
-      if @x == 3
-        @direction == "N"
+    turn_list = ["N", "W", "S", "E"]
+    x = turn_list.index(@direction)
+    if n == "L"
+      if x == 3
+        @direction = "N"
       else
-        @direction = turn_list[@x-1]
+        @direction = turn_list[x+1]
+        # puts "#{@direction}"
       end
+    else
+      if x == 0
+        @direction = "E"
+      else
+        # puts "#{x}"
+        @direction = turn_list[x-1]
+        # puts "#{direction}"
+      end
+    end
   end
 
-  def move(n)
+  def move
     if @direction == "N"
       @y += 1
-    elsif
-      @direction == "W"
+    elsif @direction == "W"
       @x -= 1
-    elsif
-      @direction == "S"
+    elsif @direction == "S"
       @y -= 1
     else
-      @direction == "E"
-      @x =+ 1
+      @x += 1
     end
   end
 
