@@ -18,7 +18,7 @@ class Rover
     end
   end
 
-  def turn
+  def turn(n)
 
     @turn_list = ["N", "W" "S", "E"]
     @x = turn_list[@direction]
@@ -29,7 +29,7 @@ class Rover
       end
   end
 
-  def move
+  def move(n)
     if @direction == "N"
       @y += 1
     elsif
