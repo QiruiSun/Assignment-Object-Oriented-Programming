@@ -8,13 +8,26 @@ class Rover
   end
 
   def read_instructions
+    puts "Input the size of the plateau on x axis"
+    x_max = gets.chomp.to_i
+    puts "Input the size of the plateau on y axis"
+    y_max = gets.chomp.to_i
+    # The @x, @y should not be larger than the plateau size
     puts "Input your insturctions here."
     @instructions = gets.chomp.each_char do |d| # forgot putting chomp gives a lot of trouble!
-      if d == "M"
-        move
-      else
-        turn(d)
+        if d == "M"
+          move
+        else
+          turn(d)
+        end
       end
+
+    if @x > 0 && @x <= x_max && @y > 0 && @y <= y_max #Final x y coordinate of the rover shoule be kept inside the plateau
+      puts "The rover is at #{@x}, #{@y} and facing #{@direction}"
+    else
+      @x = x_max
+      @y = y_max
+      puts "The movement is beyond the plateau"
     end
   end
 
